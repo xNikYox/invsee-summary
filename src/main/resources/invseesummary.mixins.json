@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "package": "de.invseesummary.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": ["ClientPlayNetworkHandlerMixin", "HandledScreenAccessor", "ScreenMixin"],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

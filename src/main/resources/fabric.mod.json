@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "invseesummary",
+  "version": "${version}",
+  "name": "InvSee Summary",
+  "description": "Zeigt beim /invsee eine Zusammenfassung ausgewählter Items (Totems, Kristalle, Gapples ...). Port für Minecraft 26.1 und 26.2.",
+  "authors": ["Noah"],
+  "contributors": ["Port auf 26.1/26.2: xNikYox"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["de.invseesummary.InvSeeSummaryClient"]
+  },
+  "mixins": ["invseesummary.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "${mc}",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

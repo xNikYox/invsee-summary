@@ -1,0 +1,33 @@
+name: Build
+# Baut die Mod für alle unterstützten Minecraft-Versionen; bei einem Tag vX.Y.Z zusätzlich ein Release mit den Jars
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+      - name: Bauen (26.1, 26.1.1, 26.1.2, 26.2)
+        run: |
+          chmod +x gradlew
+          for v in 26.1 26.1.1 26.1.2 26.2; do
+            echo "== $v"
+            ./gradlew --no-daemon -q build -Pmc=$v
+          done
+          ls -la build/libs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: invsee-summary
+          path: build/libs/invsee-summary-*+26.*.jar
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --title "InvSee Summary $GITHUB_REF_NAME" --notes "Fabric-Client-Mod für Minecraft 26.1.x und 26.2 – passendes Jar zur eigenen Version wählen." build/libs/invsee-summary-*+26.*.jar
