@@ -1,0 +1,28 @@
+package de.invseesummary;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+
+/** Stellen, an denen sich 26.1 und 26.2 unterscheiden – Fassung für 26.2 (Bildschirme über Gui, HUD in Gui.hud) */
+final class Compat {
+    private Compat() {}
+
+    static Screen screen(Minecraft mc) {
+        return mc.gui.screen();
+    }
+
+    static void setScreen(Minecraft mc, Screen screen) {
+        mc.gui.setScreen(screen);
+    }
+
+    /** F1: Oberfläche ausgeblendet */
+    static boolean hudHidden(Minecraft mc) {
+        return mc.gui.hud.isHidden();
+    }
+
+    /** Meldung über der Schnellleiste */
+    static void actionBar(Minecraft mc, Component text) {
+        mc.gui.hud.setOverlayMessage(text, false);
+    }
+}

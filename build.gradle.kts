@@ -16,6 +16,9 @@ dependencies {
     implementation("net.fabricmc.fabric-api:fabric-api:${fabricApi[mc]}")
 }
 
+// Unterschiede zwischen den Versionen stecken in src/compat/<Version>/Compat.java
+sourceSets.main { java.srcDir("src/compat/" + if (mc.startsWith("26.2")) "26.2" else "26.1") }
+
 tasks.processResources {
     inputs.property("version", project.version)
     inputs.property("mc", mc)

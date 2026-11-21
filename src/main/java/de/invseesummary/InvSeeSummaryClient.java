@@ -50,7 +50,7 @@ public class InvSeeSummaryClient implements ClientModInitializer {
             while (repeatInvseeKey.consumeClick()) repeatLastInvsee(mc);
             if (openConfigNextTick) {
                 openConfigNextTick = false;
-                mc.setScreen(new ConfigScreen());
+                Compat.setScreen(mc, new ConfigScreen());
             }
             AutoClose.tick(mc);
         });
@@ -102,7 +102,7 @@ public class InvSeeSummaryClient implements ClientModInitializer {
         if (mc.player == null || mc.getConnection() == null) return;
         String cmd = Config.get().lastInvseeCommand;
         if (cmd == null) {
-            mc.gui.setOverlayMessage(Component.literal("Noch kein /invsee benutzt").withStyle(ChatFormatting.RED), false);
+            Compat.actionBar(mc, Component.literal("Noch kein /invsee benutzt").withStyle(ChatFormatting.RED));
             return;
         }
         mc.getConnection().sendCommand(cmd);

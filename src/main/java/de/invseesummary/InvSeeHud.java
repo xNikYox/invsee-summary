@@ -47,7 +47,7 @@ public final class InvSeeHud {
     public static void render(GuiGraphicsExtractor g, DeltaTracker delta) {
         Minecraft mc = Minecraft.getInstance();
         Config cfg = Config.get();
-        if (!cfg.hud || name == null || mc.options.hideGui) {
+        if (!cfg.hud || name == null || Compat.hudHidden(mc)) {
             lastW = 0;
             return;
         }

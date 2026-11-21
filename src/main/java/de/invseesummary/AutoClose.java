@@ -32,7 +32,7 @@ public final class AutoClose {
 
     public static void tick(Minecraft mc) {
         if (screen == null) return;
-        if (mc.screen != screen || mc.player == null) {
+        if (Compat.screen(mc) != screen || mc.player == null) {
             screen = null;
             return;
         }
@@ -41,7 +41,7 @@ public final class AutoClose {
     }
 
     private static void close(Minecraft mc) {
-        if (screen == null || mc.player == null || mc.screen != screen) {
+        if (screen == null || mc.player == null || Compat.screen(mc) != screen) {
             screen = null;
             return;
         }
